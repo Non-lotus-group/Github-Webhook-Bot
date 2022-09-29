@@ -4,6 +4,7 @@ const { title } = require('process');
 const { text } = require('express');
 const { debug, Console } = require('console');
 const dotenv = require('dotenv');
+const messege = require('./post_module');
 dotenv.config();
 
 http.createServer((request, response) => {
@@ -20,10 +21,6 @@ http.createServer((request, response) => {
       body = Buffer.concat(body).toString();
       /* 在这里执行一次post请求给机器人 */
       let newBody = JSON.parse(body);
-      const bot = new Bot(
-        process.env.FEISHU_WEBHOOK_URL
-        //URL LIKE:https://open.feishu.cn/open-apis/bot/v2/hook/xxxxx
-      );
       let myEvent = myHeaders["x-github-event"];
       //消息体
 
