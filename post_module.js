@@ -5,8 +5,9 @@ const bot = new Bot(
   process.env.FEISHU_WEBHOOK_URL
 
 );
+/* eve=event  */
 
-/* function sendDEorCR(org,eve){
+function sendDEorCR(org,eve,act){
   bot.sendRich({
     title: "rich title",
     content: [
@@ -17,18 +18,36 @@ const bot = new Bot(
         },
         {
           tag: "text",
-          text: "eve",
+          text: "   ",
+        },
+        {
+          tag: "text",
+          text: eve,
+        },
+        {
+          tag: "text",
+          text: "   ",
+        },
+        {
+          tag: "text",
+          text: act,
         },
       ],
     ],
   });
 }
- */
-function sendt(){
+function sendPush(org,url,eve,act,sender){
+
+}
+function sendIssue(org,tit,sender){
+
+}
+function sendIssueComment(org,tit,comment,eve,act){
+
+}
+
+function sendTest(){
   bot.sendText("hello world!");
 }
 
-sendt();
-
-
-module.exports = {sendt}; 
+module.exports = {sendDEorCR,sendPush,sendIssue,sendIssueComment,sendTest}; 

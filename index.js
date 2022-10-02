@@ -14,16 +14,17 @@ http.createServer((request, response) => {
   request.on('error', (err) => {
     console.error(err);
   })
-    .on('data', (chunk) => {
+  .on('data', (chunk) => {
       body.push(chunk);
     })
     .on('end', () => {
-      body = Buffer.concat(body).toString();
+      body = Buffer.concat(body).toString(); 
       /* 在这里执行一次post请求给机器人 */
+
       let newBody = JSON.parse(body);
       let myEvent = myHeaders["x-github-event"];
       //消息体
-
+      messege.sendTest();
       /* 在这里结束 */
       response.on('error', (err) => {
         console.error(err);
