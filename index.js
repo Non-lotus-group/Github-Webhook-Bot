@@ -23,8 +23,19 @@ http.createServer((request, response) => {
 
       let newBody = JSON.parse(body);
       let myEvent = myHeaders["x-github-event"];
+      //console.log(newBody);
+      messege.org=newBody.repository.full_name;
+      messege.eve=myEvent;
+      messege.sender=newBody.sender.login;
       //消息体
-      messege.sendTest();
+      if(myEvent=="issues"){
+        messege.tit="11";
+        messege.act="11";
+        messege.sendIssue();
+      }
+      if(myEvent==="push"){
+        
+      } 
       /* 在这里结束 */
       response.on('error', (err) => {
         console.error(err);
