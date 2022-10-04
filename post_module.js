@@ -46,7 +46,7 @@ function sendDEorCR(org,eve,act){//delete and create event
 function sendPush(org,url,eve,act,sender){
 
 }
-function sendIssue(){
+function sendIssue(org,eve,act,tit,sender){
   bot.sendRich({
     content: [
       [
@@ -96,7 +96,7 @@ function sendIssueComment(org,tit,comment,eve,act){
 
 }
 
-function sendTest(){
-  bot.sendText("hello world!");
+function sendTest(testMess){
+  bot.sendText(testMess);
 }
 module.exports = {sendDEorCR,sendPush,sendIssue,sendIssueComment,sendTest,org,eve,act,url,sender,tit,comment}; 

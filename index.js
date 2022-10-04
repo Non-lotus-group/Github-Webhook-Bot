@@ -24,14 +24,14 @@ http.createServer((request, response) => {
       let newBody = JSON.parse(body);
       let myEvent = myHeaders["x-github-event"];
       //console.log(newBody);
-      messege.org=newBody.repository.full_name;
-      messege.eve=myEvent;
-      messege.sender=newBody.sender.login;
+      let org=newBody.repository.full_name;
+      let eve=myEvent;
+      let sender=newBody.sender.login;
       //消息体
-      if(myEvent=="issues"){
-        messege.tit="11";
-        messege.act="11";
-        messege.sendIssue();
+      if(myEvent==="issues"){
+        let tit="11";
+        let act="11";
+        messege.sendIssue(org,eve,act,tit,sender)
       }
       if(myEvent==="push"){
         
