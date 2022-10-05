@@ -10,13 +10,40 @@ const bot = new Bot(
 let org;
 let eve;
 let act;
-let url;
+let Murl;
 let sender;
 let tit;
 let comment;
 function sendDEorCR(org,eve,act){//delete and create event
   bot.sendRich({
-    title: "rich title",
+    content: [
+      [
+        {
+          tag: "text",
+          text: org,
+        },
+        {
+          tag: "text",
+          text: "  branch:",
+        },
+        {
+          tag: "text",
+          text: act,
+        },
+        {
+          tag: "text",
+          text: ".",
+        },
+        {
+          tag: "text",
+          text: eve,
+        },
+      ],
+    ],
+  });
+}
+function sendPush(org,Murl,eve,act,sender){
+  bot.sendRich({
     content: [
       [
         {
@@ -33,17 +60,29 @@ function sendDEorCR(org,eve,act){//delete and create event
         },
         {
           tag: "text",
-          text: "   ",
+          text: "  by:",
         },
+        {
+          tag: "text",
+          text: sender,
+        },
+      ],
+      [
+        {
+          "tag": "a",
+          "text": Murl,
+          "href": Murl,
+        },
+      ],
+      [
         {
           tag: "text",
           text: act,
         },
       ],
     ],
-  });
-}
-function sendPush(org,url,eve,act,sender){
+  }); 
+  
 
 }
 function sendIssue(org,eve,act,tit,sender){
@@ -64,7 +103,7 @@ function sendIssue(org,eve,act,tit,sender){
         },
         {
           tag: "text",
-          text: "   ",
+          text: ".",
         },
         {
           tag: "text",
@@ -72,7 +111,7 @@ function sendIssue(org,eve,act,tit,sender){
         },
         {
           tag: "text",
-          text: "   ",
+          text: "   :",
         },
         {
           tag: "text",
@@ -80,7 +119,7 @@ function sendIssue(org,eve,act,tit,sender){
         },
         {
           tag: "text",
-          text: "   ",
+          text: "-by",
         },
         {
           tag: "text",
@@ -99,4 +138,4 @@ function sendIssueComment(org,tit,comment,eve,act){
 function sendTest(testMess){
   bot.sendText(testMess);
 }
-module.exports = {sendDEorCR,sendPush,sendIssue,sendIssueComment,sendTest,org,eve,act,url,sender,tit,comment}; 
+module.exports = {sendDEorCR,sendPush,sendIssue,sendIssueComment,sendTest,org,eve,act,Murl,sender,tit,comment}; 

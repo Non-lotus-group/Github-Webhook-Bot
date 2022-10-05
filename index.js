@@ -27,15 +27,31 @@ http.createServer((request, response) => {
       let org=newBody.repository.full_name;
       let eve=myEvent;
       let sender=newBody.sender.login;
+      let tit;
+      let act;
+      let Murl
+      let comment;
       //消息体
       if(myEvent==="issues"){
-        let tit="11";
-        let act="11";
+        tit=newBody.issue.title;
+        act=newBody.action;
         messege.sendIssue(org,eve,act,tit,sender)
       }
       if(myEvent==="push"){
-        
+        Murl=newBody.head_commit.url;
+        act=newBody.head_commit.message;
+        messege.sendPush(org,Murl,eve,act,sender)
+        console.log(Murl);
+        console.log(eve);
+        console.log(act);
       } 
+      if(myEvent==="create"||myEvent==="delete"){
+        act=newBody.ref;
+        messege.sendDEorCR(org,eve,act);
+      }
+/*       if(myEvent==="issue_comment"){
+        messege.sendIssueComment(org,tit,comment,eve,act);
+      } */
       /* 在这里结束 */
       response.on('error', (err) => {
         console.error(err);
