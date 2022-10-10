@@ -43,9 +43,6 @@ http.createServer((request, response) => {
         Murl = newBody.head_commit.url;
         act = newBody.head_commit.message;
         messege.sendPush(org, Murl, eve, act, sender)
-        console.log(Murl);
-        console.log(eve);
-        console.log(act);
       }
       if (myEvent === "create" || myEvent === "delete") {
         act = newBody.ref;
