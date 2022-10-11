@@ -22,10 +22,8 @@ http.createServer((request, response) => {
     try {
       body = Buffer.concat(body).toString();
       /* 在这里执行一次post请求给机器人 */
-
       let newBody = JSON.parse(body);
       let myEvent = myHeaders["x-github-event"];
-      //console.log(newBody);
       let org = newBody.repository.full_name;
       let eve = myEvent;
       let sender = newBody.sender.login;
@@ -48,9 +46,6 @@ http.createServer((request, response) => {
         act = newBody.ref;
         messege.sendDEorCR(org, eve, act);
       }
-      /*       if(myEvent==="issue_comment"){
-              messege.sendIssueComment(org,tit,comment,eve,act);
-            } */
       /* 在这里结束 */
       response.on('error', (err) => {
         console.error(err);
