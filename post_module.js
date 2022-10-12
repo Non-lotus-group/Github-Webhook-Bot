@@ -1,14 +1,13 @@
 const { text } = require('express');
 const Bot = require('feishu-webhook-bot');
 const dotenv = require('dotenv').config();
-const path = require('path');
 const bot = new Bot(
   process.env.FEISHU_WEBHOOK_URL
 
 );
-let tips =path.isAbsolute('https://open.feishu.cn/open-apis/bot/v2/hook/43a6526a-7589-4f5f-ad6a-83f8c569d71c');
-console.log(tips);
-
+if(process.env.FEISHU_WEBHOOK_URL==undefined){
+  throw"you don't have a URL of feishu-bot in your .env"
+}
 let org;
 let eve;
 let act;
