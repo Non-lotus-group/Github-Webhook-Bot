@@ -11,6 +11,9 @@ const crypto = require('crypto');
 const secret = process.env.SECRET_TOKEN;
 const sigHeaderName = 'X-Hub-Signature-256';
 const sigHashAlg = 'sha256';
+if(process.env.FEISHU_WEBHOOK_URL==undefined){
+  throw"you don't have a URL of feishu-bot in your .env"
+}
 
 http.createServer((request, response) => {
   const { headers, method, url } = request;
