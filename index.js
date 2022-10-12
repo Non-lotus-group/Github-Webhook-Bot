@@ -7,6 +7,10 @@ const dotenv = require('dotenv');
 const messege = require('./post_module');
 dotenv.config();
 console.log("this process is started")
+const crypto = require('crypto');
+const secret = process.env.SECRET_TOKEN;
+const sigHeaderName = 'X-Hub-Signature-256';
+const sigHashAlg = 'sha256';
 
 http.createServer((request, response) => {
   const { headers, method, url } = request;
