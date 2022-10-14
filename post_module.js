@@ -5,9 +5,7 @@ const bot = new Bot(
   process.env.FEISHU_WEBHOOK_URL
 
 );
-if(process.env.FEISHU_WEBHOOK_URL==undefined){
-  throw"you don't have a URL of feishu-bot in your .env"
-}
+
 let org;
 let eve;
 let act;

@@ -9,7 +9,6 @@ dotenv.config();
 console.log("this process is started")
 const crypto = require('crypto');
 const secret = process.env.SECRET_TOKEN;
-const sigHeaderName = 'X-Hub-Signature-256';
 const sigHashAlg = 'sha256';
 if(process.env.FEISHU_WEBHOOK_URL==undefined){
   throw"you don't have a URL of feishu-bot in your .env"
@@ -27,10 +26,12 @@ http.createServer((request, response) => {
   })
   request.on('end', () => {
     try {
+      
       body = Buffer.concat(body).toString();
       /* 在这里执行一次post请求给机器人 */
       let newBody = JSON.parse(body);
       let myEvent = myHeaders["x-github-event"];
+      let sigHeaderName =myHeaders['x-hub-signature-256'];
       let org = newBody.repository.full_name;
       let eve = myEvent;
       let sender = newBody.sender.login;
@@ -38,6 +39,11 @@ http.createServer((request, response) => {
       let act;
       let Murl
       let comment;
+      let hmac = crypto.createHmac(sigHashAlg, secret)
+      let digest = Buffer.from(sigHashAlg + '=' + hmac.update(body).digest('hex'), 'utf8').toString();
+      if(digest !== sigHeaderName) {
+        throw new Error("Invalid signature.");
+      }
       //消息体
       if (myEvent === "issues") {
         tit = newBody.issue.title;
