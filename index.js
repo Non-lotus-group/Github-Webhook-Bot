@@ -39,42 +39,42 @@ http.createServer((request, response) => {
       let comment;
       let hmac = crypto.createHmac(sigHashAlg, secret)
       let digest = Buffer.from(sigHashAlg + '=' + hmac.update(body).digest('hex'), 'utf8').toString();
-      if(digest !== sigHeaderName) {
-        throw new Error("Invalid signature.");
+      if(digest == sigHeaderName) {
+        try {
+          //消息体
+          if (myEvent === "issues") {
+            tit = newBody.issue.title;
+            act = newBody.action;
+            messege.sendIssue(org, eve, act, tit, sender)
+          }
+          if (myEvent === "push") {
+            Murl = newBody.head_commit.url;
+            act = newBody.head_commit.message;
+            messege.sendPush(org, Murl, eve, act, sender)
+          }
+          if (myEvent === "create" || myEvent === "delete") {
+            act = newBody.ref;
+            messege.sendDEorCR(org, eve, act);
+          }
+          /* 在这里结束 */
+          response.on('error', (err) => {
+            console.error(err);
+          });
+    
+          response.statusCode = 200;
+          response.setHeader('Content-Type', 'application/json');
+          // Note: the 2 lines above could be replaced with this next one:
+    
+          response.write(JSON.stringify({ ok: true }));
+          response.end();
+          // Note: the 2 lines above could be replaced with this next one:
+    
+          // END OF NEW STUFF
+        } catch (error) {
+    
+        }
       }
-    try {
-      //消息体
-      if (myEvent === "issues") {
-        tit = newBody.issue.title;
-        act = newBody.action;
-        messege.sendIssue(org, eve, act, tit, sender)
-      }
-      if (myEvent === "push") {
-        Murl = newBody.head_commit.url;
-        act = newBody.head_commit.message;
-        messege.sendPush(org, Murl, eve, act, sender)
-      }
-      if (myEvent === "create" || myEvent === "delete") {
-        act = newBody.ref;
-        messege.sendDEorCR(org, eve, act);
-      }
-      /* 在这里结束 */
-      response.on('error', (err) => {
-        console.error(err);
-      });
 
-      response.statusCode = 200;
-      response.setHeader('Content-Type', 'application/json');
-      // Note: the 2 lines above could be replaced with this next one:
-
-      response.write(JSON.stringify({ ok: true }));
-      response.end();
-      // Note: the 2 lines above could be replaced with this next one:
-
-      // END OF NEW STUFF
-    } catch (error) {
-
-    }
 
   });
 }).listen(8080);
