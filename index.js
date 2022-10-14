@@ -25,9 +25,7 @@ http.createServer((request, response) => {
     body.push(chunk);
   })
   request.on('end', () => {
-    try {
-      
-      body = Buffer.concat(body).toString();
+    body = Buffer.concat(body).toString();
       /* 在这里执行一次post请求给机器人 */
       let newBody = JSON.parse(body);
       let myEvent = myHeaders["x-github-event"];
@@ -44,6 +42,7 @@ http.createServer((request, response) => {
       if(digest !== sigHeaderName) {
         throw new Error("Invalid signature.");
       }
+    try {
       //消息体
       if (myEvent === "issues") {
         tit = newBody.issue.title;
