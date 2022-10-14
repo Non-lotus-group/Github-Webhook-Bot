@@ -39,8 +39,11 @@ http.createServer((request, response) => {
       let comment;
       let hmac = crypto.createHmac(sigHashAlg, secret)
       let digest = Buffer.from(sigHashAlg + '=' + hmac.update(body).digest('hex'), 'utf8').toString();
-      if(digest == sigHeaderName) {
+      console.log(digest);
+      console.log(sigHeaderName);
+      if(digest === sigHeaderName) {
         try {
+          console.log("has in");
           //消息体
           if (myEvent === "issues") {
             tit = newBody.issue.title;
