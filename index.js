@@ -74,7 +74,7 @@ http.createServer((request, response) => {
 
         // END OF NEW STUFF
       } catch (error) {
-        /* ((process.env.NODE_ENV).toLowerCase() == "production") ? "" : console.error(error);  */
+        ((process.env.NODE_ENV).toLowerCase() == "production") ? "" : console.error(error); 
       }
     }
 
