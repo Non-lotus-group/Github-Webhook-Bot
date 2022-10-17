@@ -45,7 +45,7 @@ http.createServer((request, response) => {
       try {
         console.log("has in");
         //消息体
-/*         if (myEvent === "issues") {
+       if (myEvent === "issues") {
           tit = newBody.issue.title;
           act = newBody.action;
           messege.sendIssue(org, eve, act, tit, sender)
@@ -58,7 +58,7 @@ http.createServer((request, response) => {
         if (myEvent === "create" || myEvent === "delete") {
           act = newBody.ref;
           messege.sendDEorCR(org, eve, act);
-        }  */
+        } 
         /* 在这里结束 */
         response.on('error', (err) => {
           console.error(err);
