@@ -59,7 +59,7 @@ http.createServer((request, response) => {
         } 
         if(myEvent === "issue_comment"){
           tit = newBody.issue.title;
-          comment=issue.body;
+          comment=newBody.issue.body;
           act = newBody.action;
           messege.sendIssueComment(org, eve, act, tit, sender,comment)
         }
