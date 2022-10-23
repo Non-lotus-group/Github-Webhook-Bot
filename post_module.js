@@ -182,7 +182,7 @@ function sendIssueComment(org,eve,act,tit,sender,comment){
         }
       ],
     ],
-  }); 
+  });  
 
 }
 
