@@ -59,10 +59,10 @@ http.createServer((request, response) => {
         } 
         if(myEvent === "issue_comment"){
           tit = newBody.issue.title;
-          comment=newBody.issue.body;
+          comment=newBody.comment.body;
           act = newBody.action;
           messege.sendIssueComment(org,eve,act,tit,sender,comment)
-        }
+        } 
         response.on('error', (err) => {
           console.error(err);
         });
