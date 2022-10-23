@@ -130,7 +130,7 @@ function sendIssue(org,eve,act,tit,sender){
   
 }
 
-function sendIssueComment(org,tit,comment,eve,act){
+function sendIssueComment(org,eve,act,tit,sender,comment){
   bot.sendRich({
     content: [
       [
