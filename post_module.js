@@ -118,7 +118,7 @@ function sendIssue(org,eve,act,tit,sender){
         },
         {
           tag: "text",
-          text: "-by",
+          text: "-by: ",
         },
         {
           tag: "text",
@@ -131,6 +131,58 @@ function sendIssue(org,eve,act,tit,sender){
 }
 
 function sendIssueComment(org,tit,comment,eve,act){
+  bot.sendRich({
+    content: [
+      [
+        {
+          tag: "text",
+          text: org,
+        },
+        {
+          tag: "text",
+          text: "   ",
+        },
+        {
+          tag: "text",
+          text: eve,
+        },
+        {
+          tag: "text",
+          text: ".",
+        },
+        {
+          tag: "text",
+          text: act,
+        },
+        {
+          tag: "text",
+          text: "   :",
+        },
+        {
+          tag: "text",
+          text: tit,
+        },
+        {
+          tag: "text",
+          text: "-by: ",
+        },
+        {
+          tag: "text",
+          text: sender,
+        },
+      ],
+      [
+        {
+          tag: "text",
+          text: "comments: ",
+        },
+        {
+          tag:"text",
+          text:comment,
+        }
+      ],
+    ],
+  }); 
 
 }
 

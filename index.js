@@ -26,7 +26,6 @@ http.createServer((request, response) => {
   })
   request.on('end', () => {
     body = Buffer.concat(body).toString();
-    /* 在这里执行一次post请求给机器人 */
     let newBody = JSON.parse(body);
     let myEvent = myHeaders["x-github-event"];
     let sigHeaderName = myHeaders['x-hub-signature-256'];
@@ -44,7 +43,6 @@ http.createServer((request, response) => {
     if (digest === sigHeaderName) {
       try {
         console.log("has in");
-        //消息体
        if (myEvent === "issues") {
           tit = newBody.issue.title;
           act = newBody.action;
@@ -59,20 +57,22 @@ http.createServer((request, response) => {
           act = newBody.ref;
           messege.sendDEorCR(org, eve, act);
         } 
-        /* 在这里结束 */
+        if(myEvent === "issue_comment"){
+          tit = newBody.issue.title;
+          comment=issue.body;
+          act = newBody.action;
+          messege.sendIssueComment(org, eve, act, tit, sender,comment)
+        }
         response.on('error', (err) => {
           console.error(err);
         });
 
         response.statusCode = 200;
         response.setHeader('Content-Type', 'application/json');
-        // Note: the 2 lines above could be replaced with this next one:
 
         response.write(JSON.stringify({ ok: true }));
         response.end();
-        // Note: the 2 lines above could be replaced with this next one:
 
-        // END OF NEW STUFF
       } catch (error) {
         ((process.env.NODE_ENV).toLowerCase() == "production") ? "" : console.error(error); 
       }
