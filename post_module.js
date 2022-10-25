@@ -13,7 +13,7 @@ let Murl;
 let sender;
 let tit;
 let comment;
-function sendDEorCR(org,eve,act){//delete and create event
+function sendDEorCR(org,eve,act){
   bot.sendRich({
     content: [
       [
@@ -189,4 +189,40 @@ function sendIssueComment(org,eve,act,tit,sender,comment){
 function sendTest(testMess){
   bot.sendText(testMess);
 }
-module.exports = {sendDEorCR,sendPush,sendIssue,sendIssueComment,sendTest,org,eve,act,Murl,sender,tit,comment}; 
+function sendFork(org,eve,act,sender){
+  bot.sendRich({
+    content: [
+      [
+        {
+          tag: "text",
+          text: org,
+        },
+        {
+          tag: "text",
+          text: "   ",
+        },
+        {
+          tag: "text",
+          text: eve,
+        },
+        {
+          tag: "text",
+          text: ".",
+        },
+        {
+          tag: "text",
+          text: act,
+        },
+        {
+          tag: "text",
+          text: "-by: ",
+        },
+        {
+          tag: "text",
+          text: sender,
+        },
+      ],
+    ],
+  }); 
+}
+module.exports = {sendDEorCR,sendPush,sendIssue,sendIssueComment,sendTest,sendFork,org,eve,act,Murl,sender,tit,comment}; 

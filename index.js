@@ -63,6 +63,10 @@ http.createServer((request, response) => {
           act = newBody.action;
           messege.sendIssueComment(org,eve,act,tit,sender,comment)
         } 
+        if(myEvent === "fork"){
+          act = newBody.action;
+          messege.sendFork(org,eve,act,sender)
+        }
         response.on('error', (err) => {
           console.error(err);
         });
