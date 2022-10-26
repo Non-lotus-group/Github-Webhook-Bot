@@ -225,4 +225,36 @@ function sendFork(org,eve,act,sender){
     ],
   }); 
 }
-module.exports = {sendDEorCR,sendPush,sendIssue,sendIssueComment,sendTest,sendFork,org,eve,act,Murl,sender,tit,comment}; 
+function sendRepository(org,eve,act){
+  bot.sendRich({
+    content: [
+      [
+        {
+          tag: "text",
+          text: org,
+        },
+        {
+          tag: "text",
+          text: "   ",
+        },
+        {
+          tag: "text",
+          text: eve,
+        },
+        {
+          tag: "text",
+          text: ".",
+        },
+        {
+          tag: "text",
+          text: act,
+        },
+      ],
+    ],
+  }); 
+  
+
+
+
+}
+module.exports = {sendDEorCR,sendPush,sendIssue,sendIssueComment,sendTest,sendFork,sendRepository,org,eve,act,Murl,sender,tit,comment}; 

@@ -67,6 +67,10 @@ http.createServer((request, response) => {
           act = newBody.action;
           messege.sendFork(org,eve,act,sender)
         }
+        if(myEvent==="repository"){
+          act=newBody.action;
+          messege.sendRepository(org,eve,act);
+        }
         response.on('error', (err) => {
           console.error(err);
         });
