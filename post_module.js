@@ -84,7 +84,7 @@ function sendPush(org,Murl,eve,act,sender){
   
 
 }
-function sendIssue(org,eve,act,tit,sender){
+function sendIssue(org,eve,act,tit,sender,Murl){
   bot.sendRich({
     content: [
       [
@@ -124,6 +124,17 @@ function sendIssue(org,eve,act,tit,sender){
           tag: "text",
           text: sender,
         },
+      ],
+      [
+        {
+          tag:"text",
+          text:"issue_url: ",
+        },
+        {
+          tag:"text",
+          text:Murl
+        },
+
       ],
     ],
   }); 
@@ -180,6 +191,17 @@ function sendIssueComment(org,eve,act,tit,sender,comment){
           tag:"text",
           text:comment,
         }
+      ],
+      [
+        {
+          tag:"text",
+          text:"URL:  "
+        },
+        {
+          tag:"text",
+          text:Murl,
+        },
+
       ],
     ],
   });  

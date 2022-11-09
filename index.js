@@ -46,11 +46,23 @@ http.createServer((request, response) => {
        if (myEvent === "issues") {
           tit = newBody.issue.title;
           act = newBody.action;
-          messege.sendIssue(org, eve, act, tit, sender)
+          Murl = newBody.issue.comments_url;
+          messege.sendIssue(org, eve, act, tit, sender,Murl)
         }
         if (myEvent === "push") {
           Murl = newBody.head_commit.url;
-          act = newBody.head_commit.message;
+          let commitsNum = newBody.commits.length;
+          let listArray =[];
+          if(commitsNum==1){
+            act = newBody.commits.messege;
+          }
+          else{
+            for (let i =0;i < commitsNum; i++)
+            {
+              listArray.push(newBody.commits[i]["message"])
+            }
+            act=listArray.join("\n")
+          }
           messege.sendPush(org, Murl, eve, act, sender)
         }
         if (myEvent === "create" || myEvent === "delete") {
@@ -61,7 +73,8 @@ http.createServer((request, response) => {
           tit = newBody.issue.title;
           comment=newBody.comment.body;
           act = newBody.action;
-          messege.sendIssueComment(org,eve,act,tit,sender,comment)
+          Murl = newBody.issue.comments_url;
+          messege.sendIssueComment(org,eve,act,tit,sender,comment,Murl)
         } 
         if(myEvent === "fork"){
           act = newBody.action;
