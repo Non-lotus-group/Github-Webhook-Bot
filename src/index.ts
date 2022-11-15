@@ -8,7 +8,7 @@ import { parse } from 'path';
 import { json } from 'stream/consumers';
 import { EventEmitter } from 'stream';
 import { GithubEventType, githubEventTypes } from './types';
-import * as postFunction from './newPostModule';
+import * as postFunction from './postModule';
 import { ok } from 'assert';
 const sigHashAlg = 'sha256';
 const secret: string = (process.env.SECRET_TOKEN || Error("")) as string;

@@ -1,7 +1,7 @@
 {
     "ref": "refs/heads/main",
-    "before": "88acbbae88127e4f15840e97778503ade0ea1873",
-    "after": "987e1a2a34f2e9926a902e0cd38631fdb8e8e490",
+    "before": "9ff1a639247537ad0e77bd2203fbd95ee0e4178c",
+    "after": "ca1dea551daba44e23d79dc39cf9bf7ead5f1115",
     "repository": {
       "id": 564182132,
       "node_id": "R_kgDOIaC8dA",
@@ -72,13 +72,13 @@
       "deployments_url": "https://api.github.com/repos/fly-me-to-the-dine/color-helper-mini-programs/deployments",
       "created_at": 1668063343,
       "updated_at": "2022-11-10T07:13:57Z",
-      "pushed_at": 1668090897,
+      "pushed_at": 1668167484,
       "git_url": "git://github.com/fly-me-to-the-dine/color-helper-mini-programs.git",
       "ssh_url": "git@github.com:fly-me-to-the-dine/color-helper-mini-programs.git",
       "clone_url": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs.git",
       "svn_url": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs",
       "homepage": null,
-      "size": 162,
+      "size": 199,
       "stargazers_count": 0,
       "watchers_count": 0,
       "language": "JavaScript",
@@ -151,15 +151,15 @@
     "deleted": false,
     "forced": false,
     "base_ref": null,
-    "compare": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs/compare/88acbbae8812...987e1a2a34f2",
+    "compare": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs/compare/9ff1a6392475...ca1dea551dab",
     "commits": [
       {
-        "id": "5c50c2003c9be3c10d7178db44f463d9c4365fb1",
-        "tree_id": "cb6981699b10bf6173b33d5bcf23790ef6c770d5",
+        "id": "ca1dea551daba44e23d79dc39cf9bf7ead5f1115",
+        "tree_id": "112748f6e5327dcba2738d2ae994e45470f4a18d",
         "distinct": true,
-        "message": "add .prettierrc settings",
-        "timestamp": "2022-11-10T16:37:42+08:00",
-        "url": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs/commit/5c50c2003c9be3c10d7178db44f463d9c4365fb1",
+        "message": "Add index page (about main features view) & img assts.",
+        "timestamp": "2022-11-11T19:51:17+08:00",
+        "url": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs/commit/ca1dea551daba44e23d79dc39cf9bf7ead5f1115",
         "author": {
           "name": "RemiIO Scarlet",
           "email": "i@remi.email",
@@ -171,55 +171,31 @@
           "username": "u-u-z"
         },
         "added": [
-          ".prettierrc"
+          "src/pages/index/img/background.png",
+          "src/pages/index/img/card.svg",
+          "src/pages/index/img/cover.svg",
+          "src/pages/index/img/play.svg",
+          "src/pages/index/img/search.svg",
+          "src/pages/index/img/share.svg",
+          "src/pages/index/img/type.svg"
         ],
         "removed": [
-  
+          "src/pages/index/cover.svg"
         ],
         "modified": [
-  
-        ]
-      },
-      {
-        "id": "987e1a2a34f2e9926a902e0cd38631fdb8e8e490",
-        "tree_id": "187b5299915f0d4860a04117fd1d8a2dc7daf66e",
-        "distinct": true,
-        "message": "Add TailwindCSS support settings (ref. https://github.com/sonofmagic/weapp-tailwindcss-webpack-plugin/blob/main/docs/taro.md)",
-        "timestamp": "2022-11-10T21:31:28+08:00",
-        "url": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs/commit/987e1a2a34f2e9926a902e0cd38631fdb8e8e490",
-        "author": {
-          "name": "RemiIO Scarlet",
-          "email": "i@remi.email",
-          "username": "u-u-z"
-        },
-        "committer": {
-          "name": "RemiIO Scarlet",
-          "email": "i@remi.email",
-          "username": "u-u-z"
-        },
-        "added": [
-          "REAME.md",
-          "postcss.config.js",
-          "tailwind.config.js"
-        ],
-        "removed": [
-  
-        ],
-        "modified": [
-          "config/index.js",
-          "package.json",
-          "pnpm-lock.yaml",
-          "project.config.json"
+          "src/pages/index/index.config.ts",
+          "src/pages/index/index.scss",
+          "src/pages/index/index.tsx"
         ]
       }
     ],
     "head_commit": {
-      "id": "987e1a2a34f2e9926a902e0cd38631fdb8e8e490",
-      "tree_id": "187b5299915f0d4860a04117fd1d8a2dc7daf66e",
+      "id": "ca1dea551daba44e23d79dc39cf9bf7ead5f1115",
+      "tree_id": "112748f6e5327dcba2738d2ae994e45470f4a18d",
       "distinct": true,
-      "message": "Add TailwindCSS support settings (ref. https://github.com/sonofmagic/weapp-tailwindcss-webpack-plugin/blob/main/docs/taro.md)",
-      "timestamp": "2022-11-10T21:31:28+08:00",
-      "url": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs/commit/987e1a2a34f2e9926a902e0cd38631fdb8e8e490",
+      "message": "Add index page (about main features view) & img assts.",
+      "timestamp": "2022-11-11T19:51:17+08:00",
+      "url": "https://github.com/fly-me-to-the-dine/color-helper-mini-programs/commit/ca1dea551daba44e23d79dc39cf9bf7ead5f1115",
       "author": {
         "name": "RemiIO Scarlet",
         "email": "i@remi.email",
@@ -231,18 +207,21 @@
         "username": "u-u-z"
       },
       "added": [
-        "REAME.md",
-        "postcss.config.js",
-        "tailwind.config.js"
+        "src/pages/index/img/background.png",
+        "src/pages/index/img/card.svg",
+        "src/pages/index/img/cover.svg",
+        "src/pages/index/img/play.svg",
+        "src/pages/index/img/search.svg",
+        "src/pages/index/img/share.svg",
+        "src/pages/index/img/type.svg"
       ],
       "removed": [
-  
+        "src/pages/index/cover.svg"
       ],
       "modified": [
-        "config/index.js",
-        "package.json",
-        "pnpm-lock.yaml",
-        "project.config.json"
+        "src/pages/index/index.config.ts",
+        "src/pages/index/index.scss",
+        "src/pages/index/index.tsx"
       ]
     }
   }
