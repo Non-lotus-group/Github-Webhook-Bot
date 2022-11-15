@@ -1,7 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.sendDeleteAneCreate = exports.sendIssue = exports.sendIssueComment = exports.sendPush = void 0;
 const Bot = require('feishu-webhook-bot');
 const dotenv = require('dotenv').config();
 const bot = new Bot(process.env.FEISHU_WEBHOOK_URL);
-export function sendPush(organization: string, branch: string, sender: string, commit: string, commitUrl: string) {
+function sendPush(organization, branch, sender, commit, commitUrl) {
     bot.sendRich({
         content: [
             [
@@ -45,7 +48,6 @@ export function sendPush(organization: string, branch: string, sender: string, c
                     tag: 'text',
                     text: commit,
                 },
-
             ],
             [
                 {
@@ -59,9 +61,10 @@ export function sendPush(organization: string, branch: string, sender: string, c
                 },
             ]
         ]
-    })
+    });
 }
-export function sendIssueComment(organization: string, action: string, sender: string, tittle: string, comment: string, pushUrl: string) {
+exports.sendPush = sendPush;
+function sendIssueComment(organization, action, sender, tittle, comment, pushUrl) {
     bot.sendRich({
         content: [
             [
@@ -118,9 +121,10 @@ export function sendIssueComment(organization: string, action: string, sender: s
                 },
             ],
         ],
-    })
+    });
 }
-export function sendIssue(organization: string, action: string, sender: string, tittle: string, pushUrl: string) {
+exports.sendIssueComment = sendIssueComment;
+function sendIssue(organization, action, sender, tittle, pushUrl) {
     bot.sendRich({
         content: [
             [
@@ -167,9 +171,10 @@ export function sendIssue(organization: string, action: string, sender: string, 
                 },
             ],
         ],
-    })
+    });
 }
-export function sendDeleteAneCreate(organization: string, eventType: string, action: string) {
+exports.sendIssue = sendIssue;
+function sendDeleteAneCreate(organization, eventType, action) {
     bot.sendRich({
         content: [
             [
@@ -195,5 +200,6 @@ export function sendDeleteAneCreate(organization: string, eventType: string, act
                 },
             ],
         ],
-    })
+    });
 }
+exports.sendDeleteAneCreate = sendDeleteAneCreate;
