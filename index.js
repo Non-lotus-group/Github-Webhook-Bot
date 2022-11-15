@@ -17,7 +17,7 @@ if (process.env.FEISHU_WEBHOOK_URL == undefined) {
 http.createServer((request, response) => {
   const { headers, method, url } = request;
   const myHeaders = headers;
-  let body = [];
+  let body = new Array();
   request.on('error', (err) => {
     console.error(err);
   })
@@ -43,46 +43,46 @@ http.createServer((request, response) => {
     if (digest === sigHeaderName) {
       try {
         console.log("has in");
-       if (myEvent === "issues") {
+        if (myEvent === "issues") {
           tit = newBody.issue.title;
           act = newBody.action;
           Murl = newBody.issue.comments_url;
-          messege.sendIssue(org, eve, act, tit, sender,Murl)
+          messege.sendIssue(org, eve, act, tit, sender, Murl)
         }
         if (myEvent === "push") {
           Murl = newBody.head_commit.url;
           let commitsNum = newBody.commits.length;
-          let listArray =[];
-          if(commitsNum==1){
+          let listArray = [];
+          if (commitsNum == 1) {
             act = newBody.commits.messege;
           }
-          else{
-            for (let i =0;i < commitsNum; i++)
-            {
+          else {
+            for (let i = 0; i < commitsNum; i++) {
               listArray.push(newBody.commits[i]["message"])
             }
-            act=listArray.join("\n")
+            act = listArray.join("\n")
           }
+          console.log(org,Murl,eve,act,sender)
           messege.sendPush(org, Murl, eve, act, sender)
         }
         if (myEvent === "create" || myEvent === "delete") {
           act = newBody.ref;
           messege.sendDEorCR(org, eve, act);
-        } 
-        if(myEvent === "issue_comment"){
+        }
+        if (myEvent === "issue_comment") {
           tit = newBody.issue.title;
-          comment=newBody.comment.body;
+          comment = newBody.comment.body;
           act = newBody.action;
           Murl = newBody.issue.comments_url;
-          messege.sendIssueComment(org,eve,act,tit,sender,comment,Murl)
-        } 
-        if(myEvent === "fork"){
-          act = newBody.action;
-          messege.sendFork(org,eve,act,sender)
+          messege.sendIssueComment(org, eve, act, tit, sender, comment, Murl)
         }
-        if(myEvent==="repository"){
-          act=newBody.action;
-          messege.sendRepository(org,eve,act);
+        if (myEvent === "fork") {
+          act = newBody.action;
+          messege.sendFork(org, eve, act, sender)
+        }
+        if (myEvent === "repository") {
+          act = newBody.action;
+          messege.sendRepository(org, eve, act);
         }
         response.on('error', (err) => {
           console.error(err);
@@ -91,11 +91,11 @@ http.createServer((request, response) => {
         response.statusCode = 200;
         response.setHeader('Content-Type', 'application/json');
 
-        response.write(JSON.stringify({ ok: true }));
+        response.write("success: " + myEvent);
         response.end();
 
       } catch (error) {
-        ((process.env.NODE_ENV).toLowerCase() == "production") ? "" : console.error(error); 
+        ((process.env.NODE_ENV).toLowerCase() == "production") ? "" : console.error(error);
       }
     }
 
