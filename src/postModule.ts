@@ -1,5 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const Bot = require('feishu-webhook-bot');
-const dotenv = require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 const bot = new Bot(process.env.FEISHU_WEBHOOK_URL);
 export function sendPush(organization: string, branch: string, sender: string, commit: string, commitUrl: string) {
     bot.sendRich({

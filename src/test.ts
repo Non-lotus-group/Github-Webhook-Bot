@@ -1,10 +1,12 @@
 import fetch from 'node-fetch';
 import { createHmac } from 'crypto';
-const dotenv = require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 const sigHashAlg = 'sha256';
 const secret: string = (process.env.SECRET_TOKEN || Error("")) as string;
-let issueBody = require('./jsonBody.json');
-let NewissueBody = JSON.stringify(issueBody);
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const issueBody = require('./jsonBody.json');
+const NewissueBody = JSON.stringify(issueBody);
 const hmac = createHmac(sigHashAlg, secret);
 const sigHeadName = Buffer.from(sigHashAlg + '=' + hmac.update(NewissueBody).digest('hex'), 'utf8').toString();
 console.log(sigHeadName);

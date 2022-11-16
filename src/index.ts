@@ -1,45 +1,43 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import crypto, { KeyObject } from 'crypto';
-import http, { request } from 'http';
-import { response } from 'express';
-import { buffer } from 'node:stream/consumers';
-import { parse } from 'path';
-import { json } from 'stream/consumers';
-import { EventEmitter } from 'stream';
+import crypto from 'crypto';
+import http from 'http';
 import { GithubEventType, githubEventTypes } from './types';
 import * as postFunction from './postModule';
-import { ok } from 'assert';
+import type { PushEvent, CreateEvent, DeleteEvent, IssuesEvent, IssueCommentEvent, } from '@octokit/webhooks-types/schema';
+
+
+
 const sigHashAlg = 'sha256';
-const secret: string = (process.env.SECRET_TOKEN || Error("")) as string;//there has a bug, it seems token not work
-console.log('you have access the server');
-import type { PushEvent, CreateEvent, DeleteEvent, IssuesEvent, IssueCommentEvent, RepositoryEvent } from '@octokit/webhooks-types/schema';
-import { type } from 'os';
+const secret: string = (process.env.SECRET_TOKEN || Error("environment variables SECRET_TOKEN failure")) as string;
+
+
+
 http.createServer((request, response) => {
     const { headers } = request;
-    let body = new Array();
+    const body: Uint8Array[] = [];
     request.on('error', (err) => {
         console.error(err);
     })
-    request.on('data', (chunk: any) => {
+    request.on('data', (chunk: Uint8Array) => {
         body.push(chunk);
     })
     request.on('end', () => {
         let stringBody = "";
         stringBody = Buffer.concat(body).toString();
-        let jsonBody: any = JSON.parse(stringBody);
+        const jsonBody: any = JSON.parse(stringBody);
         if (!githubEventTypes.includes((headers["x-github-event"] as GithubEventType))) {
             response.statusCode = 400;
             console.error("error: github event type not supported");
             response.end();
             return;
         }
-        let eventType: GithubEventType = headers["x-github-event"] as GithubEventType;
-        let githubSigName = headers['x-hub-signature-256'];
-        let organization = jsonBody.repository.full_name;
+        const eventType: GithubEventType = headers["x-github-event"] as GithubEventType;
+        const githubSigName = headers['x-hub-signature-256'];
+        const organization = jsonBody.repository.full_name;
         console.log(secret);
-        let hmac = crypto.createHmac(sigHashAlg, secret)
-        let digest = Buffer.from(sigHashAlg + '=' + hmac.update(stringBody).digest('hex'), 'utf8').toString();
+        const hmac = crypto.createHmac(sigHashAlg, secret)
+        const digest = Buffer.from(sigHashAlg + '=' + hmac.update(stringBody).digest('hex'), 'utf8').toString();
         if (digest !== githubSigName) {
             response.statusCode = 401;
             response.end();
