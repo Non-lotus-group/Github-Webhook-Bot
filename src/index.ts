@@ -11,7 +11,7 @@ import { GithubEventType, githubEventTypes } from './types';
 import * as postFunction from './postModule';
 import { ok } from 'assert';
 const sigHashAlg = 'sha256';
-const secret: string = (process.env.SECRET_TOKEN || Error("")) as string;
+const secret: string = (process.env.SECRET_TOKEN || Error("")) as string;//there has a bug, it seems token not work
 console.log('you have access the server');
 import type { PushEvent, CreateEvent, DeleteEvent, IssuesEvent, IssueCommentEvent, RepositoryEvent } from '@octokit/webhooks-types/schema';
 import { type } from 'os';
@@ -37,7 +37,7 @@ http.createServer((request, response) => {
         let eventType: GithubEventType = headers["x-github-event"] as GithubEventType;
         let githubSigName = headers['x-hub-signature-256'];
         let organization = jsonBody.repository.full_name;
-        let sender = jsonBody.sender.login;
+        console.log(secret);
         let hmac = crypto.createHmac(sigHashAlg, secret)
         let digest = Buffer.from(sigHashAlg + '=' + hmac.update(stringBody).digest('hex'), 'utf8').toString();
         if (digest !== githubSigName) {
