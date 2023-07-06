@@ -15,8 +15,11 @@ SECRET_TOKEN=XXXXXXXX
 - `FEISHU_WEBHOOK_URL ` [can be checked from bot's information in your feishu group](https://www.feishu.cn/hc/zh-CN/articles/244506653275)  
 - `MY_OWN_SERVER` is your server's URL like: `http://your-own-server:8080` 
 - `SECRET_TOKEN` [is used for security settings to protect your bot from external attack](https://docs.github.com/cn/developers/webhooks-and-events/webhooks/securing-your-webhooks)
-
+# Start
+```shell
+$ ts-node src/index.ts
+```
 # Test
 ```shell
-$ npm run test
+$ ts-node src/test.ts
 ```
